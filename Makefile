@@ -1,8 +1,8 @@
 APP=$(shell basename $(shell git remote get-url origin))
 REGISTRY=romanvalkman
 VERSION=$(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short HEAD)
-#TARGETOS=linux #linux 
-#TARGETARCH=amd64 #arm64
+TARGETOS=ios #linux 
+TARGETARCH=arm64  #arm64
 
 format:
 	gofmt -s -w ./
@@ -28,21 +28,21 @@ clean:
 	docker rmi ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
 
 linux:
-	TARGETOS=linux
-	TARGETARCH=amd64
-	docker build . -t ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
+	echo 'linux' > os.txt
+	echo 'amd64' > tarch.txt
+	docker build . -t ${REGISTRY}/${APP}:${VERSION}-amd64
 
 arm:
-	TARGETOS=ios
-	TARGETARCH=arm64
-	docker build . -t ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
+	echo 'ios' > os.txt
+	echo 'arm64' > tarch.txt
+	docker build . -t ${REGISTRY}/${APP}:${VERSION}-arm64
 
 macos:
-	TARGETOS=ios
-	TARGETARCH=amd64
+	TARGETOS=$(ios)
+	TARGETARCH=$(amd64)
 	docker build . -t ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
 
 windows:
-	TARGETOS=windows
-	TARGETARCH=amd64
+	${TARGETOS}='windows'
+	${TARGETARCH}='amd64'
 	docker build . -t ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
