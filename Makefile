@@ -33,12 +33,12 @@ linux:
 	docker build . -t ${REGISTRY}/${APP}:${VERSION}-amd64
 
 arm:
-	echo 'ios' > os.txt
+	echo 'darwin' > os.txt
 	echo 'arm64' > tarch.txt
 	docker build . -t ${REGISTRY}/${APP}:${VERSION}-arm64
 
 macos:
-	echo 'ios' > os.txt
+	echo 'darwin' > os.txt
 	echo 'amd64' > tarch.txt
 	docker build . -t ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
 
