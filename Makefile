@@ -40,9 +40,9 @@ arm:
 macos:
 	echo 'darwin' > os.txt
 	echo 'amd64' > tarch.txt
-	docker build . -t ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
+	docker build . -t ${REGISTRY}/${APP}:${VERSION}-amd64
 
 windows:
 	echo 'windows' > os.txt
 	echo 'amd64' > tarch.txt
-	docker build . -t ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
+	docker build . -t ${REGISTRY}/${APP}:${VERSION}-amd64
